@@ -1,0 +1,548 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="2628,5467" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:t="clr-namespace:TTS;assembly=TextToSpeech" xmlns:twa="clr-namespace:Twilio.Workflow.Activities;assembly=TwilioSMS" xmlns:ug="clr-namespace:UiPath.GSuite;assembly=UiPath.GSuite" xmlns:uga="clr-namespace:UiPath.GSuite.Activities;assembly=UiPath.GSuite.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:usl="clr-namespace:UiPathTeam.Salesforce.Lightning_Platform;assembly=UiPathTeam.Salesforce.Lightning_Platform" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Try_Catch" sap:VirtualizedContainerService.HintSize="2588,5347" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="IoT_In" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Location_In" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Patient_In" />
+      <Variable x:TypeArguments="sd:DataTable" Name="IoT_Out" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Location_Out" />
+      <Variable x:TypeArguments="sd:DataTable" Name="Patient_Out" />
+      <Variable x:TypeArguments="x:Int32" Name="Iot_Vibration" />
+      <Variable x:TypeArguments="x:Int32" Name="Iot_Temperature" />
+      <Variable x:TypeArguments="x:Int32" Name="Iot_Pulse_Rate" />
+      <Variable x:TypeArguments="x:Int32" Name="Iot_Pressure" />
+      <Variable x:TypeArguments="x:String" Name="Iot_Latitude" />
+      <Variable x:TypeArguments="x:String" Name="Iot_Longitude" />
+      <Variable x:TypeArguments="x:String" Name="Iot_Patient_ID" />
+      <Variable x:TypeArguments="ui:GenericValue" Name="Link" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <TryCatch DisplayName="Patient Care" sap:VirtualizedContainerService.HintSize="2550,5255" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <TryCatch.Try>
+        <Sequence sap:VirtualizedContainerService.HintSize="2516,5023" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Parallel sap:VirtualizedContainerService.HintSize="2478,105" sap2010:WorkflowViewState.IdRef="Parallel_3">
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_20" Text="[&quot;Patient Care Bot Started&quot;]" TopMost="True" />
+            <t:TextToSpeech DisplayName="Text to speech" sap:VirtualizedContainerService.HintSize="216,59" sap2010:WorkflowViewState.IdRef="TextToSpeech_4" Speed="-1" Text="Patient Care Bot Started" VoiceType="Male" Volume="75" />
+          </Parallel>
+          <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="2478,59" sap2010:WorkflowViewState.IdRef="MessageBox_21" Text="[&quot;Salesforce Cloud Initiated&quot;]" TopMost="True" />
+          <usl:Salesforce_Application_Scope ConsumerKeyProd="{x:Null}" ConsumerSecretProd="{x:Null}" ExistingAuth="{x:Null}" ExistingService="{x:Null}" PasswordProd="{x:Null}" ResponseAuth="{x:Null}" ResponseService="{x:Null}" SecurityTokenProd="{x:Null}" UserNameProd="{x:Null}" ValidConnection="{x:Null}" Connection_Status="Close_at_scope_end" ConsumerKey="3MVG9G9pzCUSkzZscZLofM2l5xlUMOkHpfhnqa2CzfTJoTmMBLiMM3f.pDhQ2c3vJelCZSlom00osp835nuih" ConsumerSecret="27E235BAC12A99FF46A693805E41EB39CB04D32220E46C505EFBBB81ADA6A4C2" DisplayName="Salesforce Application Scope" EnvironmentType="Design_and_Test" sap:VirtualizedContainerService.HintSize="2478,178" sap2010:WorkflowViewState.IdRef="Salesforce_Application_Scope_1" Password="powerup1" SecurityToken="PKLPLWf1Ms8mBg0LWOulxoqC" ServerType="Live" UserName="drbot@automation.com">
+            <usl:Salesforce_Application_Scope.Body>
+              <ActivityAction x:TypeArguments="usl:SalesForceProperty">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="usl:SalesForceProperty" Name="SalesForceScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="216,68" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <usl:Get_Data_SOQL Response="{x:Null}" Result="{x:Null}" ValidConnection="{x:Null}" DataResult="[IoT_In]" DisplayName="Get Data SOQL" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="Get_Data_SOQL_1" SOQL_Command="Select PId1__c, Vibration__c, Temperature__c, Pulse_Rate__c, Pressure__c, Latitude1__c, Longitude1__c from IoT__c" />
+                  <usl:Get_Data_SOQL Response="{x:Null}" Result="{x:Null}" ValidConnection="{x:Null}" DataResult="[Location_In]" DisplayName="Get Data SOQL" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="Get_Data_SOQL_2" SOQL_Command="Select &#x9;Name, Latitude__c, Longitude__c from HLocation__c" />
+                  <usl:Get_Data_SOQL Response="{x:Null}" Result="{x:Null}" ValidConnection="{x:Null}" DataResult="[Patient_In]" DisplayName="Get Data SOQL" sap:VirtualizedContainerService.HintSize="216,22" sap2010:WorkflowViewState.IdRef="Get_Data_SOQL_3" SOQL_Command="Select Name, Pname__c, GuadrianNo__c from Patient__c" />
+                </Sequence>
+              </ActivityAction>
+            </usl:Salesforce_Application_Scope.Body>
+          </usl:Salesforce_Application_Scope>
+          <Parallel sap:VirtualizedContainerService.HintSize="2478,105" sap2010:WorkflowViewState.IdRef="Parallel_4">
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_23" Text="[&quot;Connection Established between Salesforce Cloud &amp; Google Suite&quot;]" TopMost="True" />
+            <t:TextToSpeech DisplayName="Text to speech" sap:VirtualizedContainerService.HintSize="216,59" sap2010:WorkflowViewState.IdRef="TextToSpeech_5" Speed="-1" Text="Connection Established between Salesforce Cloud &amp; Google Suite" VoiceType="Male" Volume="75" />
+          </Parallel>
+          <uga:GSuiteApplicationScope CredentialID="{x:Null}" CredentialSecret="{x:Null}" ApiKey="AIzaSyCnHw2YbgesS--bdTHEm6sf8kCFQ5H0kIw" AuthenticationType="ServiceAccountKey" DisplayName="GSuite Application Scope" HasDomainWideAccesss="False" sap:VirtualizedContainerService.HintSize="2478,154" sap2010:WorkflowViewState.IdRef="GSuiteApplicationScope_1" KeyPath="C:\Users\bhave\Desktop\KeyPath\pioneering-flow-250807-3c0db4f6a1d8.json" KeyType="JSON" Password="iloveindia*123" ServiceAccountEmail="uipath@pioneering-flow-250807.iam.gserviceaccount.com" Services="Sheets" UserEmail="doctorbot2019@gmail.com">
+            <uga:GSuiteApplicationScope.Body>
+              <ActivityAction x:TypeArguments="ug:SimpleObjectContainer">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="ug:SimpleObjectContainer" Name="GSuiteScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="216,68" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uga:WriteRange Result="{x:Null}" DataTable="[IoT_In]" DisplayName="Write Range IOT" sap:VirtualizedContainerService.HintSize="330,110" sap2010:WorkflowViewState.IdRef="WriteRange_1" IncludeHeaders="False" IsInsideBatchUpdateScope="False" SheetName="Sheet1" SpreadsheetId="1JwUXg0Gej5A3X_3EDKXgDXbpJ8Ac4Uj1L5BzqVltGB0" StartingCell="A2" />
+                  <uga:WriteRange Result="{x:Null}" DataTable="[Location_In]" DisplayName="Write Range Location" sap:VirtualizedContainerService.HintSize="330,110" sap2010:WorkflowViewState.IdRef="WriteRange_2" IncludeHeaders="False" IsInsideBatchUpdateScope="False" SheetName="Sheet1" SpreadsheetId="1QV5WUVdUSC1uAQuGs16AOrX7b9aGJeM1gNWdA_Cq9Wo" StartingCell="A2" />
+                  <uga:WriteRange Result="{x:Null}" DataTable="[Patient_In]" DisplayName="Write Range Patient" sap:VirtualizedContainerService.HintSize="330,110" sap2010:WorkflowViewState.IdRef="WriteRange_3" IncludeHeaders="False" IsInsideBatchUpdateScope="False" SheetName="Sheet1" SpreadsheetId="1XyHosvUWNSVCz3IeRa-hOyyIM_avKAtvNn0a53mQq9g" StartingCell="A2" />
+                  <uga:ReadRange DisplayName="Read Range IOT" sap:VirtualizedContainerService.HintSize="330,82" sap2010:WorkflowViewState.IdRef="ReadRange_1" IncludeHeaders="True" Result="[IoT_Out]" SheetName="Sheet1" SpreadsheetId="1JwUXg0Gej5A3X_3EDKXgDXbpJ8Ac4Uj1L5BzqVltGB0">
+                    <uga:ReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </uga:ReadRange.Range>
+                  </uga:ReadRange>
+                  <uga:ReadRange DisplayName="Read Range Location" sap:VirtualizedContainerService.HintSize="330,82" sap2010:WorkflowViewState.IdRef="ReadRange_2" IncludeHeaders="True" Result="[Location_Out]" SheetName="Sheet1" SpreadsheetId="1QV5WUVdUSC1uAQuGs16AOrX7b9aGJeM1gNWdA_Cq9Wo">
+                    <uga:ReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </uga:ReadRange.Range>
+                  </uga:ReadRange>
+                  <uga:ReadRange DisplayName="Read Range Patient" sap:VirtualizedContainerService.HintSize="330,82" sap2010:WorkflowViewState.IdRef="ReadRange_3" IncludeHeaders="True" Result="[Patient_Out]" SheetName="Sheet1" SpreadsheetId="1XyHosvUWNSVCz3IeRa-hOyyIM_avKAtvNn0a53mQq9g">
+                    <uga:ReadRange.Range>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" Value="" />
+                      </InArgument>
+                    </uga:ReadRange.Range>
+                  </uga:ReadRange>
+                </Sequence>
+              </ActivityAction>
+            </uga:GSuiteApplicationScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </uga:GSuiteApplicationScope>
+          <Parallel sap:VirtualizedContainerService.HintSize="2478,105" sap2010:WorkflowViewState.IdRef="Parallel_5">
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_24" Text="[&quot;GSuite is populated with IoT Device Data&quot;]" TopMost="True" />
+            <t:TextToSpeech DisplayName="Text to speech" sap:VirtualizedContainerService.HintSize="216,59" sap2010:WorkflowViewState.IdRef="TextToSpeech_6" Speed="-1" Text="GSuite is populated with IoT Device Data" VoiceType="Male" Volume="75" />
+          </Parallel>
+          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[IoT_Out]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="2478,3840" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+            <ui:ForEachRow.Body>
+              <ActivityAction x:TypeArguments="sd:DataRow">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Iot" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="2432,3691" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Iot_Patient_ID]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Iot.Item(0).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Iot_Vibration]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(Iot.Item(1).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Iot_Temperature]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(Iot.Item(2).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Iot_Pulse_Rate]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(Iot.Item(3).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Int32">[Iot_Pressure]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Int32">[Convert.ToInt32(Iot.Item(4).ToString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Iot_Latitude]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Iot.Item(5).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Assign sap:VirtualizedContainerService.HintSize="2394,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[Iot_Longitude]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Iot.Item(6).ToString]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <Parallel sap:VirtualizedContainerService.HintSize="2394,2899" sap2010:WorkflowViewState.IdRef="Parallel_2">
+                    <If Condition="[Iot_Temperature&gt;100 OR Iot_Temperature&lt;97 OR Iot_Pulse_Rate&gt;100 OR Iot_Pulse_Rate&lt;60 OR Iot_Pressure&gt;140]" DisplayName="If IOT" sap:VirtualizedContainerService.HintSize="1035,2853" sap2010:WorkflowViewState.IdRef="If_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="894,1365" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[Location_Out]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="856,1273" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                            <ui:ForEachRow.Body>
+                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Location" />
+                                </ActivityAction.Argument>
+                                <Sequence sap:VirtualizedContainerService.HintSize="810,1124" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <If Condition="[Iot_Latitude = Location.Item(1).ToString AND Iot_Longitude = Location.Item(2).ToString]" DisplayName="If Location" sap:VirtualizedContainerService.HintSize="772,1032" sap2010:WorkflowViewState.IdRef="If_2">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If.Then>
+                                      <Sequence sap:VirtualizedContainerService.HintSize="631,882" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[Patient_Out]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="593,790" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+                                          <ui:ForEachRow.Body>
+                                            <ActivityAction x:TypeArguments="sd:DataRow">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Patient" />
+                                              </ActivityAction.Argument>
+                                              <Sequence sap:VirtualizedContainerService.HintSize="547,641" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                                <sap:WorkflowViewStateService.ViewState>
+                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  </scg:Dictionary>
+                                                </sap:WorkflowViewStateService.ViewState>
+                                                <If Condition="[Iot_Patient_ID=Patient.Item(0).ToString]" DisplayName="If Patient" sap:VirtualizedContainerService.HintSize="509,549" sap2010:WorkflowViewState.IdRef="If_1">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If.Then>
+                                                    <Sequence sap:VirtualizedContainerService.HintSize="368,399" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                                      <sap:WorkflowViewStateService.ViewState>
+                                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                        </scg:Dictionary>
+                                                      </sap:WorkflowViewStateService.ViewState>
+                                                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[&quot;Patient Name: &quot;+Patient.Item(1).ToString+&quot; is abnormal&quot;]" TopMost="True" />
+                                                      <t:TextToSpeech DisplayName="Virtual Assistant - Hospital Reception" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="TextToSpeech_1" Speed="-1" Text="[&quot;Emergency, Patient &quot;+Patient.Item(1).ToString+&quot; requires immediate attention&quot;]" VoiceType="Female" Volume="75" />
+                                                      <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Hospital Reception" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_2" Message="[&quot;SMS to Hospital&quot;+vbCrLf+&quot;Patient Name: &quot;+Patient.Item(1).ToString+&quot; is abnormal&quot;]" To="+919842923921" />
+                                                      <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Doctor" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_3" Message="[&quot;SMS to Doctor&quot;+vbCrLf+&quot;Patient Name: &quot;+Patient.Item(1).ToString+&quot; is abnormal&quot;]" To="+919500556686" />
+                                                      <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Guardian" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_4" Message="[&quot;SMS to Guardian&quot;+vbCrLf+&quot;Patient Name: &quot;+Patient.Item(1).ToString+&quot; is abnormal in the Hospital: &quot;+Location.Item(0).ToString]" To="[&quot;+&quot;+Patient.Item(2).ToString]" />
+                                                    </Sequence>
+                                                  </If.Then>
+                                                </If>
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:ForEachRow.Body>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </ui:ForEachRow>
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEachRow.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ForEachRow>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                    <If Condition="[Iot_Vibration&lt;100 AND Iot_Vibration&gt;50]" DisplayName="If Vibration" sap:VirtualizedContainerService.HintSize="1189,2853" sap2010:WorkflowViewState.IdRef="If_12">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="1048,2703" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <If Condition="[Iot_Patient_ID=&quot;&quot;]" sap:VirtualizedContainerService.HintSize="1010,1206" sap2010:WorkflowViewState.IdRef="If_13">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Sequence sap:VirtualizedContainerService.HintSize="468,1056" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="430,59" sap2010:WorkflowViewState.IdRef="MessageBox_18" Text="[&quot;A person has met with an acident in the location: &quot;]" TopMost="True" />
+                                <ui:OpenBrowser UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" Hidden="False" sap:VirtualizedContainerService.HintSize="430,617" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" NewSession="True" Private="False" Url="google.com/maps/place">
+                                  <ui:OpenBrowser.Body>
+                                    <ActivityAction x:TypeArguments="x:Object">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                                      </ActivityAction.Argument>
+                                      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="368,518" sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'chrome.exe Chrome'" EmptyField="False" sap:VirtualizedContainerService.HintSize="330,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[Iot_Latitude+Iot_Longitude+&quot;[k(enter)]&quot;]">
+                                          <ui:TypeInto.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="df1dd232f48b3be7b44b472fe2292909" Selector="&lt;webctrl id='searchboxinput' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
+                                          </ui:TypeInto.Target>
+                                        </ui:TypeInto>
+                                        <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                                          <ui:Click.CursorPosition>
+                                            <ui:CursorPosition Position="Center">
+                                              <ui:CursorPosition.OffsetX>
+                                                <InArgument x:TypeArguments="x:Int32" />
+                                              </ui:CursorPosition.OffsetX>
+                                              <ui:CursorPosition.OffsetY>
+                                                <InArgument x:TypeArguments="x:Int32" />
+                                              </ui:CursorPosition.OffsetY>
+                                            </ui:CursorPosition>
+                                          </ui:Click.CursorPosition>
+                                          <ui:Click.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="3bb4c1ec3dcddfc7d3d04e3f7cde331d" Selector="&lt;webctrl aaname='Share' parentid='pane' tag='IMG' /&gt;" WaitForReady="INTERACTIVE" />
+                                          </ui:Click.Target>
+                                        </ui:Click>
+                                        <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'INPUT'" sap:VirtualizedContainerService.HintSize="330,106" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                                          <ui:GetValue.Target>
+                                            <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="65b492b47377c171fcce9efb0719df66" Selector="&lt;webctrl tag='INPUT' type='text' /&gt;" WaitForReady="INTERACTIVE" />
+                                          </ui:GetValue.Target>
+                                          <ui:GetValue.Value>
+                                            <OutArgument x:TypeArguments="ui:GenericValue">[Link]</OutArgument>
+                                          </ui:GetValue.Value>
+                                        </ui:GetValue>
+                                      </Sequence>
+                                    </ActivityAction>
+                                  </ui:OpenBrowser.Body>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </ui:OpenBrowser>
+                                <t:TextToSpeech DisplayName="Virtual Assistant - Hospital Reception" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="TextToSpeech_2" Speed="-1" Text="Emergency, A person has met with an acident " VoiceType="Female" Volume="75" />
+                                <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Hospital Reception" From="+12562448898" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_5" Message="[&quot;SMS to Hospital&quot;+vbCrLf+&quot;A person has met with an acident in the location: &quot;+Link]" To="+919842923921" />
+                                <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Ambulance" From="+12562448898" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_6" Message="[&quot;SMS to Ambulance&quot;+vbCrLf+&quot;A person has met with an acident in the location: &quot;+Link]" To="+918489543129" />
+                                <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Police" From="+12562448898" sap:VirtualizedContainerService.HintSize="430,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_7" Message="[&quot;SMS to Police&quot;+vbCrLf+&quot;A person has met with an acident in the location: &quot;+Link]" To="+919500556686" />
+                              </Sequence>
+                            </If.Then>
+                          </If>
+                          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[Location_Out]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="1010,1365" sap2010:WorkflowViewState.IdRef="ForEachRow_4">
+                            <ui:ForEachRow.Body>
+                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Hospital" />
+                                </ActivityAction.Argument>
+                                <Sequence sap:VirtualizedContainerService.HintSize="964,1216" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="926,1124" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <If Condition="[Iot_Latitude=Hospital.Item(1).ToString AND Iot_Longitude=Hospital.Item(2).ToString]" DisplayName="If Inpatient" sap:VirtualizedContainerService.HintSize="888,1032" sap2010:WorkflowViewState.IdRef="If_10">
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <If.Then>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="631,882" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[Patient_Out]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="593,790" sap2010:WorkflowViewState.IdRef="ForEachRow_5">
+                                            <ui:ForEachRow.Body>
+                                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Patients" />
+                                                </ActivityAction.Argument>
+                                                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="547,641" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <If Condition="[Iot_Patient_ID=Patients.Item(0).ToString]" sap:VirtualizedContainerService.HintSize="509,549" sap2010:WorkflowViewState.IdRef="If_14">
+                                                    <If.Then>
+                                                      <Sequence sap:VirtualizedContainerService.HintSize="368,399" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                                                        <sap:WorkflowViewStateService.ViewState>
+                                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                          </scg:Dictionary>
+                                                        </sap:WorkflowViewStateService.ViewState>
+                                                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_16" Text="[&quot;The Patient:&quot;+Patients.Item(1).ToString+&quot; has fallen from the bed.&quot;]" TopMost="True">
+                                                          <sap:WorkflowViewStateService.ViewState>
+                                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                            </scg:Dictionary>
+                                                          </sap:WorkflowViewStateService.ViewState>
+                                                        </ui:MessageBox>
+                                                        <t:TextToSpeech DisplayName="Virtual Assistant - Hospital Reception" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="TextToSpeech_3" Speed="-1" Text="[&quot;Emergency, The Patient:&quot;+Patients.Item(1).ToString+&quot; has fallen from the bed.&quot;]" VoiceType="Female" Volume="75" />
+                                                        <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Hospital Reception" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_8" Message="[&quot;SMS to Hospital&quot;+vbCrLf+&quot;The Patient:&quot;+Patients.Item(1).ToString+&quot; has fallen from the bed.&quot;]" To="+919842923921" />
+                                                        <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Guardian" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_9" Message="[&quot;SMS to Ambulance&quot;+vbCrLf+&quot;A person has met with an acident in the location: &quot;]" To="[&quot;+&quot;+Patients.Item(2).ToString]" />
+                                                        <twa:SendSmsMessage AccountSid="AC2fb385edd4dbcd18d1b8e8942efd8c1e" AuthToken="7c4d61171aba43a76be6c47d93b92241" DisplayName="SMS to Police" From="+12562448898" sap:VirtualizedContainerService.HintSize="330,22" sap2010:WorkflowViewState.IdRef="SendSmsMessage_10" Message="[&quot;SMS to Doctor&quot;+vbCrLf+&quot;The Patient:&quot;+Patients.Item(1).ToString+&quot; has fallen from the bed.&quot;]" To="+919500556686" />
+                                                      </Sequence>
+                                                    </If.Then>
+                                                  </If>
+                                                </Sequence>
+                                              </ActivityAction>
+                                            </ui:ForEachRow.Body>
+                                          </ui:ForEachRow>
+                                        </Sequence>
+                                      </If.Then>
+                                      <If.Else>
+                                        <Sequence sap:VirtualizedContainerService.HintSize="216,84" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </Sequence>
+                                      </If.Else>
+                                    </If>
+                                  </Sequence>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEachRow.Body>
+                          </ui:ForEachRow>
+                        </Sequence>
+                      </If.Then>
+                    </If>
+                  </Parallel>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEachRow.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEachRow>
+          <Parallel sap:VirtualizedContainerService.HintSize="2478,105" sap2010:WorkflowViewState.IdRef="Parallel_6">
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="330,59" sap2010:WorkflowViewState.IdRef="MessageBox_25" Text="[&quot;Stay Tuned for the next Patient Updation&quot;]" TopMost="True" />
+            <t:TextToSpeech DisplayName="Text to speech" sap:VirtualizedContainerService.HintSize="216,59" sap2010:WorkflowViewState.IdRef="TextToSpeech_7" Speed="-1" Text="Stay Tuned for the next Patient Updation" VoiceType="Male" Volume="75" />
+          </Parallel>
+        </Sequence>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="2520,22" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ActivityAction x:TypeArguments="s:Exception">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,93" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Error in Execution&quot;]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+      <TryCatch.Finally>
+        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="330,93" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;End of Execution&quot;]" />
+      </TryCatch.Finally>
+    </TryCatch>
+  </Sequence>
+</Activity>
